@@ -18,10 +18,14 @@ class ExampleList2(APIView):
         queryset = Example2.objects.filter(delete = False) # Esta madre es un query :v
         serializer = Example2Serializers(queryset, many=True)
         return Response(serializer)
-
-    def post(self, request, format=None):
-        pass
         
+    def post(self, request, format=None):
+        serializer = Example2Serializers(data = request.data)
+        if serializer.is_valid():
+            serializer.save()
+            datas = serializer.data
+            return Response(datas)
+        return Response(serializer.errors, status = status.HTTP_400_BAD_REQUEST)
 
 # Clase pasada
 from rest_framework.authtoken.views import ObtainAuthToken
