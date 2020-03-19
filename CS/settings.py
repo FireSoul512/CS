@@ -54,7 +54,25 @@ REST_FRAMEWORK = {
     'DEFAULT_PAGINATION_CLASS': 'rest_framework.pagination.LimitOffsetPagination',
     'DEFAULT_SCHEMA_CLASS': 'rest_framework.schemas.coreapi.AutoSchema',
     'PAGE_SIZE': 100,
+    'DEFAULT_SHEMA_CLASS':'rest_framework.schemas.copeapi.AutoSchema'
 }
+
+SWAGGER_SETTINGS = {
+    'SECURITY_DEFINITIONS': {
+        'api_key' :{
+            'type':'apikey',
+            'in':'header',
+            'name':'Authorization',
+            'Authorization':'Bearer {apikey}'
+        }
+    },
+    'JSON_EDITOR': True,
+    'USE_SESSION_AUTH': True,
+    'REFETCH_SCHEMA_ON_LOGOUT':True,
+}
+
+LOGIN_URL: 'auth/login/'
+LOGOUT_URL: 'auth/logout/'
 
 CORS_ALLOW_METHODS = (
     'DELETE',
@@ -146,3 +164,4 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/3.0/howto/static-files/
 
 STATIC_URL = '/static/'
+STATIC_ROOT="assets"
