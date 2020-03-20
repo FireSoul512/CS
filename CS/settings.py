@@ -49,7 +49,7 @@ INSTALLED_APPS = [
 SITE_ID = 1
 
 REST_FRAMEWORK = {
-    'DEFAULT_PERMISSION_CLASSES':('rest_framework.permissions.IsAuthenticated',),
+    'DEFAULT_PERMISSION_CLASSES':('rest_framework.permissions.AllowAny',),
     'DEFAULT_AUTHENTICATION_CLASSES':('rest_framework.authentication.TokenAuthentication',),
     'DEFAULT_PAGINATION_CLASS': 'rest_framework.pagination.LimitOffsetPagination',
     'DEFAULT_SCHEMA_CLASS': 'rest_framework.schemas.coreapi.AutoSchema',
@@ -57,19 +57,6 @@ REST_FRAMEWORK = {
     'DEFAULT_SHEMA_CLASS':'rest_framework.schemas.copeapi.AutoSchema'
 }
 
-SWAGGER_SETTINGS = {
-    'SECURITY_DEFINITIONS': {
-        'api_key' :{
-            'type':'apikey',
-            'in':'header',
-            'name':'Authorization',
-            'Authorization':'Bearer {apikey}'
-        }
-    },
-    'JSON_EDITOR': True,
-    'USE_SESSION_AUTH': True,
-    'REFETCH_SCHEMA_ON_LOGOUT':True,
-}
 
 LOGIN_URL: 'auth/login/'
 LOGOUT_URL: 'auth/logout/'
